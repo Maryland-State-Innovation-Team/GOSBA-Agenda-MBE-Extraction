@@ -70,7 +70,7 @@ def extract_agenda_structured(
         # Find CGL pages
         cgl_pages = {}
         for page_num, md in md_pages:
-            if "-CGL." in md and "CAPITAL GRANTS AND LOANS" in md:
+            if "-CGL." in md and "CAPITAL GRANTS AND LOANS" in md and "MBE " in md:
                 cgl_matches = re.findall(r"(\d+-CGL\.)", md)
                 for cgl in cgl_matches:
                     if cgl not in cgl_pages:
@@ -111,7 +111,6 @@ def extract_agenda_structured(
                 col = f"{sub.demographic} Participation Goal"
                 row[col] = sub.percent
             all_rows.append(row)
-            import pdb; pdb.set_trace()
     # Export to CSV
     df = pd.DataFrame(all_rows)
     df.to_csv(output_csv, index=False)
