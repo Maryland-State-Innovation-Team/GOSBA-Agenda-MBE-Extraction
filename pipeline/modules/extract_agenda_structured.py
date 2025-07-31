@@ -70,7 +70,7 @@ def extract_agenda_structured(
         # Find CGL pages
         cgl_pages = {}
         for page_num, md in md_pages:
-            if "-CGL." in md and "CAPITAL GRANTS AND LOANS" in md and "MBE " in md:
+            if "-CGL." in md and "CAPITAL GRANTS AND LOANS" in md and re.search(r"\bMBE\b", md):
                 cgl_matches = re.findall(r"(\d+-CGL\.)", md)
                 for cgl in cgl_matches:
                     if cgl not in cgl_pages:
